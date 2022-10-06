@@ -1,0 +1,36 @@
+/**
+  * app.css
+  * Soham Rajput
+  * 301180583
+  * Oct 3, 2021
+  */
+/* custom css goes here */
+.myimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50;
+    height: 80;
+  }
+
+  /*
+  .centertext {
+    display: block;
+    text-align: center;
+  }
+  */
+
+  .lefttext {
+    display: block;
+    text-align: left;
+  }
+
+  button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container{  
+    text-align: center;
+    }  
