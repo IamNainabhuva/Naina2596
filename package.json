@@ -1,5 +1,5 @@
 {
-  "name": "expressportfolio",
+  "name": "aagamportfolio",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -23,7 +23,7 @@
     "nodemon": "^2.0.20",
     "popper.js": "^1.16.1"
   },
-  "description": "COMP229 - Express Portfolio",
+  "description": "Aagam Portfolio",
   "main": "server.js",
   "repository": {
     "type": "git",

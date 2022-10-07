@@ -5,7 +5,7 @@
  */
 
 var app = require('./app');
-var debug = require('debug')('expressportfolio:server');
+var debug = require('debug')('aagamportfolio:server');
 var http = require('http');
 
 /**
