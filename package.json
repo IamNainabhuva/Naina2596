@@ -1,38 +1,13 @@
 {
-  "name": "aagamportfolio",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node server.js",
-    "devStart": "nodemon server.js"
-  },
-  "engines": {
-    "node": "^14.0.0",
-    "npm": "^7.0.0"
-  },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
-    "bootstrap": "^5.1.1",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jquery": "^3.6.0",
-    "morgan": "~1.9.1",
-    "nodemon": "^2.0.20",
-    "popper.js": "^1.16.1"
-  },
-  "description": "Aagam Portfolio",
-  "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IamAagamShah/Assignmnet1.git"
-  },
-  "author": "Aagam Shah",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/IamAagamShah/Assignmnet1.git"
-  },
-  "homepage": "https://github.com/IamAagamShah/Assignmnet1.git#readme"
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.6.5",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^7.1.2"
+  }
 }

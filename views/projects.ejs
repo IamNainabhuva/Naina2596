@@ -1,27 +1,33 @@
-<%- include partials/header.ejs %>
+<%- include('partials/header.ejs') %>
 
-  <%- include partials/main_nav.ejs %>
+  <%- include('partials/main_nav.ejs') %>
 
-    <%- include partials/title.ejs %>
+    <%- include('partials/title.ejs') %>
 
-      <!--Projects content-->
-      <div class="container">
-        <h2><br>My Projects</h2>
-      </div>
-
-      <div class="container" style="padding-bottom:100px;">
-        <br><img class="myimg" src="/Assets/images/slackbotimg.png" alt="Slack Bot">
-        <h4>Serverless Slack bot using AWS Lambda and API Gateway</h4>
-        <p>Built enterprise-level Slack bot using AWS serverless technologies like AWS Lambda and API Gateway</p>
-        <br><img class="myimg" src="/Assets/images/digits.png" alt="Digits">
-        <h4>Handwritten digit recognizer using CNN</h4>
-        <p>Built a handwritten digit recognizer using Convolutional Neural Network over MNIST handwritten digit database
+      <div class="container" style="padding-bottom:20 px; height:50px;border-radius: 10%;">
+        <br><img class="myimg" src="http://localhost:3000/Assets/images/family1.png" alt="Slack Bot">
+        <h4>Family Tracking system</h4>
+        <p> The application aims at providing a simple way-out for ensuring the child’s safety all the while he is by
+          his own. The main objectives of this application are as follows:The application would provide the ability to
+          divide interested geo-graphical area into different sub zones
+          (e.g. safe, risky, highly risky etc.)
         </p>
-        <br><img class="myimg" src="/Assets/images/lstmnodeimg.png" alt="LSTM">
-        <h4>Time-series forecasting using LSTM</h4>
-        <p>Built a time-series forecasting - future sales predictor model using LSTM</p>
+        <br><img class="myimg" src="http://localhost:3000/Assets/images/digits.png" alt="Digits">
+        <h4>handwritten CNN</h4>
+        <p>Built a handwritten digit recognizer using Convolutional Neural Network over MNIST
+          handwritten digit database
+        </p>
+        <br><img class="myimg" src="http://localhost:3000/Assets/images/sever.jpg" alt="wallpaper">
+        <h4>Bubble Screensaver</h4>
+        <p>this project was developed a screensaver in which there were a number of bubble
+          are moving around whole screen.
+        </p>
+        <br>
+        <br>
+        <br>
+
       </div>
 
-      <%- include partials/bottom_nav.ejs %>
+      <%- include('partials/bottom_nav.ejs') %>
 
-        <%- include partials/footer.ejs %>
+        <%- include('partials/footer.ejs') %>

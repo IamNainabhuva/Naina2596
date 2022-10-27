@@ -1,42 +1,147 @@
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
+var express = require("express"),
+    mongoose = require("mongoose"),
+    passport = require("passport"),
+    bodyParser = require("body-parser"),
+    LocalStrategy = require("passport-local"),
+    passportLocalMongoose =
+        require("passport-local-mongoose"),
+    User = require("./models/user");
+Contact = require("./models/contact");
+UserData = [];
+contactData = [];
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://0.0.0.0/node-mongodb";
+var ObjectId = require('mongodb').ObjectId;
 
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+mongoose.connect('https://github.com/IamNainabhuva/Assignment_2.git');
 
-let app = express();
+var app = express();
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.use(require("express-session")({
+    secret: "Rusty is a dog",
+    resave: false,
+    saveUninitialized: false
+}));
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// Showing home page
+app.get('/', function (req, res, next) {
+    if (UserData && UserData.length > 0) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) throw err;
+            var dbo = db.db("node-mongodb");
+            dbo.collection("contact").find({}).sort({ name: 1 }).toArray(function (err, result) {
+                if (err) throw err;
+                contactData = result;
+                res.render("home", { data: contactData });
+                db.close();
+            });
+        });
+    }
+    else { res.redirect('/login'); }
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error', { title: 'Error' });
+
+//Showing login form
+app.get("/login", function (req, res) {
+    res.render("login", { title: 'login' });
 });
 
-module.exports = app;
+app.get("/index", function (req, res) {
+    res.render("index", { title: 'Information' });
+});
+
+app.get("/about", function (req, res) {
+    res.render("about", { title: 'About Me' });
+});
+
+app.get("/contact", function (req, res) {
+    res.render("contact", { title: 'Contact Me' });
+});
+
+app.get("/projects", function (req, res) {
+    res.render("projects", { title: 'Projects' });
+});
+
+app.get("/services", function (req, res) {
+    res.render("services", { title: 'Services' });
+});
+
+app.post("/update", function (req, res) {
+    var id = req.body._id;
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("node-mongodb");
+        dbo.collection("contact").updateOne({ "_id": new ObjectId(id) }, { $set: { name: req.body.name, email: req.body.email, contactNumber: req.body.contactNumber } }, { upsert: true }, function (err, result) {
+            db.close();
+        });
+    });
+
+    res.redirect('/');
+});
+
+app.get("/update/:id", function (req, res) {
+    var id = req.params.id;
+    if (UserData && UserData.length > 0) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) throw err;
+            var dbo = db.db("node-mongodb");
+            dbo.collection("contact").find({ "_id": new ObjectId(id) }).sort({ name: 1 }).toArray(function (err, result) {
+                if (err) throw err;
+                res.render("update", { data: result });
+                db.close();
+            });
+        });
+    }
+    else { res.redirect('/login'); }
+});
+
+//Handling user login
+app.post("/login", function (req, res) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("node-mongodb");
+        dbo.collection("user").find({ name: req.body.username, password: req.body.password }).sort({ name: 1 }).toArray(function (err, result) {
+            if (err) throw err;
+            if (result && result.length > 0) {
+                UserData = result;
+                res.redirect('/');
+                db.close();
+            }
+            else {
+                res.redirect('/login');
+            }
+        });
+    });
+});
+
+//Handling user logout
+app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+    console.log("Server Has Started!");
+});
+
+app.get('/delete/:id', function (req, res, next) {
+    var id = req.params.id;
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("node-mongodb");
+
+        dbo.collection("contact").deleteOne({ "_id": new ObjectId(id) }, function (err, result) {
+            db.close();
+        });
+    });
+
+    res.redirect('/');
+});

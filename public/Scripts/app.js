@@ -1,18 +1,16 @@
-/**
-  * app.css
-  * Soham Rajput
-  * 301180583
-  * Oct 3, 2021
+/*
+  Nayna Bhuva
+  301145612
+  26 October,2022
   */
 
-// IIFE - Immediately Invoked Function Expression
-(function(){
 
-    function Start()
-    {
-        console.log("App Started...");
-    }
+(function () {
 
-    window.addEventListener("load", Start);
+  function Start() {
+    console.log("App Started...");
+  }
+
+  window.addEventListener("load", Start);
 
 })();

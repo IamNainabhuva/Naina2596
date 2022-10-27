@@ -1,10 +1,9 @@
-/**
-  * app.css
-  * Aagam Shah
-  * 301225588
-  * Oct 7, 2022
+/*
+  * css file
+  * Nayna Bhuva
+  * 301145612
   */
-/* custom css goes here */
+
 .myimg {
   display: block;
   margin-left: auto;
@@ -13,12 +12,7 @@
   height: 80;
 }
 
-/*
-  .centertext {
-    display: block;
-    text-align: center;
-  }
-  */
+
 
 .lefttext {
   display: block;
@@ -32,5 +26,5 @@ button {
 }
 
 .container {
-  text-align: center;
+  text-align: center
 }

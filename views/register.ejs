@@ -1,0 +1,26 @@
+<!-- Nayna bhuva
+     301145612
+    october 26,2022-->
+<%- include('partials/header.ejs') %>
+
+  <%- include('partials/main_nav.ejs') %>
+
+    <%- include('partials/title.ejs') %>
+
+      <h1> Sign up form </h1>
+
+      <form action="/register" method="POST">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <button>Submit</button>
+      </form>
+
+      <h1>This is home page</h1>
+
+      <li><a href="/register">Sign up!!</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/logout">Logout</a></li>
+
+      <%- include('partials/bottom_nav.ejs') %>
+
+        <%- include('partials/footer.ejs') %>
