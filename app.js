@@ -13,7 +13,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://0.0.0.0/node-mongodb";
 var ObjectId = require('mongodb').ObjectId;
 
-mongoose.connect('https://github.com/IamNainabhuva/Assignment_2.git');
+mongoose.connect('mongodb://0.0.0.0/node-mongodb');
 
 var app = express();
 app.set("view engine", "ejs");
